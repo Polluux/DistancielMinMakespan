@@ -1,23 +1,156 @@
 <!DOCTYPE html>
 <html lang=fr>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <title>Distanciel MIN-MAKESPAN</title>
+	<title>Distanciel MIN-MAKESPAN</title>
 
-    <link rel="stylesheet" type="text/css" href="static/semanticui/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="static/semanticui/semantic.min.css">
 </head>
-<body>
-    <h1 class="ui header">Distanciel MIN-MAKESPAN</h1>
+<body style="position:relative">
+
+<div class="ui container basic segment very padded center aligned">
+	<h1 class="ui header">Distanciel MIN-MAKESPAN</h1>
+</div>
+
+<!-- Accordeon choix entrée-->
+<div class="ui main container">
+	<div class="ui center aligned">
+		<h2 class="ui header">Choisir une entrée</h2>
+	</div>
+	<div class="ui styled fluid accordion">
+		<div class="title active">
+			<i class="dropdown icon"></i> <i class="upload icon"></i> Depuis un fichier
+		</div>
+		<div class="content active">
+			<div class="ui form">
+				<div class="inline field">
+					<label>Fichier</label>
+					<input type="file">
+				</div>
+			</div>
+			<div class="ui icon warning message"><i class="info icon"></i>
+			  	<p>Le fichier ne doit contenir qu'une ligne, et être sous la forme suivante : <br/>
+			  	<span style="font-family: monospace;">nombre de machines : nombre de jobs : durée du job 1 : durée du job 2 : ... : durée du job n</span></p>
+			</div>
+ <!--Go fichier-->
+			<button class="ui pink button">C'est parti</button>
+		</div>
+
+		<div class="title">
+			<i class="dropdown icon"></i> <i class="terminal icon"></i> Au clavier
+		</div>
+		<div class="content">
+			<div class="ui form">
+				<div class="field">
+					<label>Votre entrée</label>
+					<textarea placeholder="2 : 7 : 4 : 3 : 3 : 2 : 2 : 5 : 6 "></textarea>
+				</div>
+			</div>
+			<div class="ui icon warning message"><i class="info icon"></i>
+			  	<p>Votre entrée ne doit contenir qu'une ligne, et être sous la forme suivante : <br/>
+			  	<span style="font-family: monospace;">nombre de machines : nombre de jobs : durée du job 1 : durée du job 2 : ... : durée du job n</span></p>
+			</div>
+ <!--Go input-->
+			<button class="ui pink button">C'est parti</button>
+		</div>
+
+		<div class="title">
+			<i class="dropdown icon"></i> <i class="random icon"></i> Génération aléatoire
+		</div>
+		<div class="content">
+			<div class="ui form">		
+				<div class="fields">	
+					<div class="field">
+						<label>Nombre de machines</label><input name="n"type="number" value="3" min="0" required>
+					</div>
+					<div class="field">
+						<label>Nombre de jobs</label><input name="m"type="number" value="10" min="0" required>
+					</div>
+					<div class="field">
+						<label>Nombre d'instances</label><input name="k"type="number" value="10" min="0" required>
+					</div>
+				</div>
+				<div class="field">
+					<label for="input_min">Durée d'un job entre</label>
+				</div>
+				<div class="two fields">
+					<div class="eight wide field">
+						<input name="min"type="number" value="1" min="0" required>
+					</div>
+					et
+					<div class="eight wide field">
+						<input name="max"type="number" value="15" min="0" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="ui icon warning message"><i class="info icon"></i>
+			  	<p>Les résultats seront écrits dans un fichier et ne seront pas affichés ici.</p>
+			</div>
+ <!--Go random-->
+			<button class="ui pink button">C'est parti</button>
+		</div>
+	</div>
+</div>
+<!-- fin accordeon -->
+
+<div class="ui main container basic segment very padded"><div class="ui divider"></div></div>
+
+<!-- Résultats -->
+<div class="ui main container">
+	<div class="ui center aligned">
+		<h2 class="ui header">Résultat</h2>
+	</div>
 
 
+	<table class="ui definition selectable table"><tbody>
+		<tr>
+			<td>Borne inférieure "maximum"</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Borne inférieure "moyenne"</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Résultat LSA</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Résultat LPT</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Résultat MyAlgo</td>
+			<td></td>
+		</tr>
+	</tbody></table>
+</div>
+<!-- fin résultats -->
+
+
+
+<div class="ui main container basic segment very padded"></div>
+
+
+<!-- Footer -->
+<footer class="ui vertical footer segment">
+	<div class="ui center aligned container">
+		Par Roxane Bellot & Alexandre Boudine <i class="icon thumbs outline up pink"</i>
+	</div>
+</footer>
+<!-- Fin footer -->
 
 
 <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
 <script src="static/semanticui/semantic.min.js"></script>
+<script>
+	$('.ui.accordion').accordion();
+</script>
 </body>
 </html>
