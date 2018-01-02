@@ -1,5 +1,5 @@
 function lsa(nb_machines, jobs) {
-	//On créé un tableau de nb_machines emplacements, qui représente le temps d'activité de chaques machines
+	//On créé un tableau de nb_machines emplacements, qui représentent le temps d'activité de chaque machines
 	machines = new Array(nb_machines).fill(0);
 	//Ensuite, pour chaque élément de jobs, on l'attribue à la machine la plus faible
 	for(j in jobs){
@@ -19,7 +19,19 @@ function lpt(nb_machines, jobs) {
 }
 
 function myalgo(nb_machines, jobs) {
-	return 3
+	//On créé un tableau de nb_machines emplacements, qui représentent le temps d'activité de chaque machines
+	//Cependant, il n'est pas initialisé à 0, mais avec d'autres tableaux, vides, qui représentent les tâches pour cette machine
+	machines = new Array(nb_machines).fill(new Array());
+	//Ensuite on execute l'algorithme lsa
+	for(j in jobs){
+		tmp = [];
+		tmp[0] = jobs[j];
+		indexMin = indexOfMin(machines);
+		tmp.push.apply(tmp,machines[indexMin]);
+		machines[indexMin] = tmp;
+	}
+	//Puis on tente de réarranger entre les machines ... bullshit
+	return sum(machines[indexOfMax(machines)]);
 }
 
 
@@ -28,13 +40,13 @@ function indexOfMin(arr) {
         return -1;
     }
 
-    var min = arr[0];
+    var min = sum(arr[0]);
     var minIndex = 0;
 
     for (var i = 1; i < arr.length; i++) {
-        if (arr[i] < min) {
+        if (sum(arr[i]) < min) {
             minIndex = i;
-            min = arr[i];
+            min = sum(arr[i]);
         }
     }
 
@@ -46,18 +58,29 @@ function indexOfMax(arr) {
         return -1;
     }
 
-    var max = arr[0];
+    var max = sum(arr[0]);
     var maxIndex = 0;
 
     for (var i = 1; i < arr.length; i++) {
-        if (arr[i] > max) {
+        if (sum(arr[i]) > max) {
             maxIndex = i;
-            max = arr[i];
+            max = sum(arr[i]);
         }
     }
 
     return maxIndex;
 }
 
-//console.log(lsa(3,[2,7,1,3,2,6,2,3,6,2,5]))
-//console.log(lpt(3,[2,7,1,3,2,6,2,3,6,2,5]));
+function sum(arr){
+	//Récupérer la somme d'un array, ou simplement la valeur d'un int
+	//Permet l'utilisation de lsa dans MyAlgo sans avoir à réécrire les fonctions
+	if (arr instanceof Array) {
+		return arr.reduce(function(pv, cv) { return pv + cv; }, 0);
+	}else{
+		return arr;
+	}
+}
+
+console.log(lsa(3,[2,7,1,3,2,6,2,3,6,2,5]));
+console.log(lpt(3,[2,7,1,3,2,6,2,3,6,2,5]));
+console.log(myalgo(3,[2,7,1,3,2,6,2,3,6,2,5]));
