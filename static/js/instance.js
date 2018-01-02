@@ -21,6 +21,6 @@ class Instance {
 		for( var i = 0; i < this.jobs.length; i++ ){
 		    sum += this.jobs[i]
 		}
-		document.getElementById('borne_moy').textContent = sum/this.jobs.length;
+		document.getElementById('borne_moy').textContent = sum/this.nb_machines;
 	}
 }
