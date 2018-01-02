@@ -1,12 +1,4 @@
 function lsa(nb_machines, jobs) {
-	return 10;
-}
-
-function lpt(nb_machines, jobs) {
-	//Tri décroissant de jobs
-	jobs.sort(function(a,b){
-		return b - a;
-	});
 	//On créé un tableau de nb_machines emplacements, qui représente le temps d'activité de chaques machines
 	machines = new Array(nb_machines).fill(0);
 	//Ensuite, pour chaque élément de jobs, on l'attribue à la machine la plus faible
@@ -15,6 +7,15 @@ function lpt(nb_machines, jobs) {
 	}
 	//On retourne ensuite simplement la plus grand valeur de ce tableau (la machine qui travail le plus longtemps en continu)
 	return machines[indexOfMax(machines)];
+}
+
+function lpt(nb_machines, jobs) {
+	//Tri décroissant de jobs
+	jobs.sort(function(a,b){
+		return b - a;
+	});
+	//On utilise simplement l'algorithme lsa, avec le tableau des tâches trié
+	return lsa(nb_machines, jobs);
 }
 
 function myalgo(nb_machines, jobs) {
@@ -58,4 +59,5 @@ function indexOfMax(arr) {
     return maxIndex;
 }
 
-//console.log(lpt(3,[1,2,3,4,5,6]));
+//console.log(lsa(3,[2,7,1,3,2,6,2,3,6,2,5]))
+//console.log(lpt(3,[2,7,1,3,2,6,2,3,6,2,5]));
