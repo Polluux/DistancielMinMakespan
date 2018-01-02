@@ -1,13 +1,5 @@
 function au_clavier() {
-	var input = document.getElementById('input_au_clavier').value.split(':').map(x => parseInt (x));
-	var nb_jobs = input[1];
-	var jobs = input.slice(2);
-
-	if (jobs.length == nb_jobs){
-		var instance = new Instance(input[0], jobs);
-		instance.calculate();
-		instance.populate();
-	}
+	single_instance(document.getElementById('input_au_clavier').value);
 }
 
 function alea() {
@@ -87,3 +79,28 @@ nombre d'instances : " + k + "\n \n \n \
 	document.body.removeChild(element);
 
 }
+
+
+function from_file() {
+	file = document.getElementById('input_from_file').files[0];
+	fr = new FileReader();
+	fr.onload = deal_with_it;
+	fr.readAsText(file)
+	function deal_with_it() {
+		single_instance(fr.result);
+	}
+}
+
+function single_instance(input) {
+	input = input.split(':').map(x => parseInt (x));
+	var nb_jobs = input[1];
+	var jobs = input.slice(2);
+
+	if (jobs.length == nb_jobs){
+		var instance = new Instance(input[0], jobs);
+		instance.calculate();
+		instance.populate();
+	}
+
+}
+
