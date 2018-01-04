@@ -23,7 +23,7 @@
 		<div class="title active">
 			<i class="dropdown icon"></i> <i class="upload icon"></i> Depuis un fichier
 		</div>
-		<div class="content active">
+		<div class="content active" id="file_form">
 			<div class="ui form">
 				<div class="inline field">
 					<label>Fichier</label>
@@ -41,7 +41,7 @@
 		<div class="title">
 			<i class="dropdown icon"></i> <i class="terminal icon"></i> Au clavier
 		</div>
-		<div class="content">
+		<div class="content" id="input_form">
 			<div class="ui form">
 				<div class="field">
 					<label>Votre entrée</label>
@@ -98,6 +98,8 @@
 
 <div class="ui main container basic segment very padded"><div class="ui divider"></div></div>
 
+<div class="ui loader" id="loader"></div>
+
 <!-- Résultats -->
 <div class="ui main container basic segment">
 	<div class="ui center aligned">
@@ -105,7 +107,6 @@
 	</div>
 
 
-	<div class="ui loader" id="loader"></div>
 
 
 	<table class="ui definition selectable table"><tbody>
@@ -157,6 +158,14 @@
 <script src="static/js/controllers.js"></script>
 <script>
 	$('.ui.accordion').accordion();
+	$('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
 </script>
 </body>
 </html>
